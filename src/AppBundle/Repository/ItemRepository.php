@@ -14,9 +14,10 @@ class ItemRepository extends \Doctrine\ORM\EntityRepository
     public function findByShop($shop){
 
         $qb = $this->createQueryBuilder('i');
-        $qb->leftJoin('i.rack', 'r')
-            ->where('r.shop =: SHOP')
-            ->setParameter('SHOP',$shop);
+        $qb = $qb->leftJoin('i.rack', 'r')
+            ->leftJoin('r.shop', 's')
+            ->where('s.id =:SHOP')
+            ->setParameter('SHOP',$shop->getId());
         $result = $qb->getQuery()->getResult();
 
         return $result;

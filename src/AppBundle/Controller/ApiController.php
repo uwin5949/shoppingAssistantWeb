@@ -23,7 +23,9 @@ class ApiController extends Controller
     public function findRackList(Request $request)
     {
         if($request->getMethod() == "POST"){
-            $racks = $this->getDoctrine()->getManager()->getRepository("AppBundle:Rack")->findAll();
+            $shop_id = $request->get('shop_id');
+            $shop = $this->getDoctrine()->getManager()->getRepository('AppBundle:Shop')->find($shop_id);
+            $racks = $this->getDoctrine()->getManager()->getRepository("AppBundle:Rack")->findBy(array('shop'=>$shop));
             $stdRacks = array();
             foreach($racks as $rack) {
                 $stdRack = new \stdClass();
@@ -49,7 +51,9 @@ class ApiController extends Controller
     public function findBeaconList(Request $request)
     {
         if($request->getMethod() == "POST"){
-            $beacons = $this->getDoctrine()->getManager()->getRepository("AppBundle:Beacon")->findAll();
+            $shop_id = $request->get('shop_id');
+            $shop = $this->getDoctrine()->getManager()->getRepository('AppBundle:Shop')->find($shop_id);
+            $beacons = $this->getDoctrine()->getManager()->getRepository("AppBundle:Beacon")->findBy(array('shop'=>$shop));
             $stdBeacons = array();
             foreach($beacons as $beacon) {
                 $stdBeacon = new \stdClass();
@@ -80,6 +84,7 @@ class ApiController extends Controller
             $stdItems = array();
             if($shop != null){
                 $items = $this->getDoctrine()->getManager()->getRepository('AppBundle:Item')->findByShop($shop);
+
                 foreach($items as $item){
                     $stdItem = new \stdClass();
                     $stdItem->id = $item->getId();
