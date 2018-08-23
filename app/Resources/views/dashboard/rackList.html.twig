@@ -1,0 +1,66 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <div class="text-center">
+                        <h3>Rack List</h3>
+                    </div>
+                </div>
+
+                <div class="box-body">
+
+                    <div class="row">
+                        {#<div class="col-md-2">#}
+                            {#<label class="control-label"> Route</label>#}
+                        {#</div>#}
+
+                        {#<div class="col-md-3">#}
+                            {#<select onchange="fetchBusesOfRoute()" id="route" class="form-control">#}
+                                {#{% for route in routes %}#}
+                                    {#<option value="{{ route.getId() }}" >{{ route.getRouteNo() ~": "~route.getRouteName() }}</option>#}
+                                {#{% endfor %}#}
+                            {#</select>#}
+                        {#</div>#}
+
+
+                    </div>
+
+                    <div class="row" id="data_row">
+                        <table class="table">
+                            <thead>
+                            <tr>
+
+                                <th>Rack NO</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for rack in racks %}
+                                <tr>
+                                    <td>{{ rack.getRackNo() }}</td>
+                                    <td><a  type="button"  class="btn btn-success" href="{{ url('rack_configure',{'id':rack.getId()}) }}"><span class="glyphicon glyphicon-list-alt"></span> Edit</a></td>
+                                </tr>
+                            {%endfor%}
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+
+                </div>
+                {#<div class="box-footer" style="text-align: right">#}
+                {##}
+                {#</div>#}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

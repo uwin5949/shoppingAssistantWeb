@@ -1,3 +1,11 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+effective_solutions_user:
+    resource: "@EffectiveSolutionsUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+logout:
+    path: /logout

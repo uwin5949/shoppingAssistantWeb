@@ -1,0 +1,112 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <div class="text-center">
+                        <h3>Item List</h3>
+                    </div>
+                </div>
+
+                <div class="box-body">
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label"> Rack</label>
+                        </div>
+
+                        <div class="col-md-3">
+                            <select onchange="fetchitemsOfRack()" id="rack" class="form-control">
+                                {% for rack in racks %}
+                                    <option value="{{ rack.getId() }}" >{{ rack.getRackNo() }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row" id="data_row">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Item Code</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Offer</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+
+                </div>
+                {#<div class="box-footer" style="text-align: right">#}
+                {##}
+                {#</div>#}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+        $(document).ready(function () {
+            // fetchBusesOfRoute();
+            fetchitemsOfRack();
+
+        });
+
+        function fetchitemsOfRack(){
+            var path = "{{ path('dashboard_item_list_ajax_load_data') }}";
+            var jsondata=JSON.stringify({rack:$('#rack').val()});
+//            $('.loader').show();
+            $.ajax({
+                type: "POST",
+                url: path,
+                dataType: "json",
+                data: {data:jsondata},
+                success : function(response)
+                {
+//                    $('.loader').hide();
+                    var innerHtml='<table class="table"> <thead><tr><th>Item Code</th><th>Name</th><th>Price</th><th>Offer</th><th></th></tr></thead><tbody>';
+                    for(var i=0;i<response.length;i++){
+                        innerHtml=innerHtml+'<tr>';
+                        innerHtml=innerHtml+'<td>'+response[i].itemCode+'</td>';
+                        innerHtml=innerHtml+'<td>'+response[i].itemName+'</td>';
+                        innerHtml=innerHtml+'<td>'+response[i].price+'</td>';
+                        if(response[i].offer !== null){
+                            innerHtml=innerHtml+'<td>response[i].offer</td>';
+                        }
+                        else{
+                            innerHtml=innerHtml+'<td></td>';
+                        }
+                        innerHtml=innerHtml+'<td><a type="button" class="btn btn-success" href="PLACEHO##LDER"><span class="glyphicon glyphicon-list-alt"></span> Edit</a></td>';
+
+                        innerHtml=innerHtml+'<tr>';
+                        var vRoute = "{{ path('item_configure', { 'id': "vPLACEHOLDER" }) }}";
+                        vRoute=vRoute.replace("vPLACEHOLDER", response[i].id);
+                        innerHtml=innerHtml.replace("PLACEHO##LDER",vRoute);
+                    }
+
+                    innerHtml=innerHtml+'</tbody></table>';
+                    $('#data_row').html(innerHtml);
+
+                }
+            });
+        }
+
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-10">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <div class="text-center">
+                        <h3>Rack Configure</h3>
+                    </div>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    {% if errors is not empty %}
+                        <div class="alert alert-danger alert-tastyy">
+                            <label>{{ errors }}</label>
+                        </div>
+                    {% endif %}
+                    <div class="box-body">
+                        {{ form_start(form) }}
+
+                        <div class="row">
+                            <div class="col-md-2 col-lg-2 col-xl-2 col-xs-4 hidden-xs" style="padding-right: 70px;padding-top: 5px; padding-bottom: 10px">
+                                <h2 class="panel-title" style="margin: 0px !important;">
+                                    {{ form_label(form.rackNo) }}
+                                </h2>
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-xl-5 col-xs-4" style="padding-right: 0px; padding-bottom: 10px">
+                                <div class="form-group">
+                                    {{ form_widget(form.rackNo, { 'attr': {'class': 'form-control','placeholder':'Rack No'} }) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2 col-lg-2 col-xl-2 col-xs-4 hidden-xs" style="padding-right: 70px;padding-top: 5px; padding-bottom: 10px">
+                                <h2 class="panel-title" style="margin: 0px !important;">
+                                    {{ form_label(form.x_coord) }}
+                                </h2>
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-xl-5 col-xs-4" style="padding-right: 0px; padding-bottom: 10px">
+                                <div class="form-group">
+                                    {{ form_widget(form.x_coord, { 'attr': {'class': 'form-control','placeholder':'X Coordinate'} }) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2 col-lg-2 col-xl-2 col-xs-4 hidden-xs" style="padding-right: 70px;padding-top: 5px; padding-bottom: 10px">
+                                <h2 class="panel-title" style="margin: 0px !important;">
+                                    {{ form_label(form.y_coord) }}
+                                </h2>
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-xl-5 col-xs-4" style="padding-right: 0px; padding-bottom: 10px">
+                                <div class="form-group">
+                                    {{ form_widget(form.y_coord, { 'attr': {'class': 'form-control','placeholder':'Y Coordinate'} }) }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="box-footer" style="text-align: right">
+                        <a class="btn btn-default" href="{{ url('dashboard_home') }}">Cancel</a>
+                        {{ form_widget(form.save,{ 'attr': {'class': 'btn btn-success'}}) }}
+                        {{ form_end(form) }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
