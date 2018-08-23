@@ -1,0 +1,19 @@
+services:
+#    effective_solutions_user.example:
+#        class: EffectiveSolutions\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    esub.email:
+        class: EffectiveSolutions\UserBundle\Utils\Email
+        arguments: ["@templating","@mailer","%mailer_user%"]
+    esub.user_update:
+        class: EffectiveSolutions\UserBundle\Utils\UserUpdate
+        arguments: ["@templating","@mailer","%mailer_user%"]
+    esub.email_confirm_validator:
+        class: EffectiveSolutions\UserBundle\Utils\EmailConfirmValidator
+        arguments: ["@templating","@doctrine.orm.entity_manager","@mailer","%mailer_user%"]
+    esub.email_validator:
+        class: EffectiveSolutions\UserBundle\Validator\Constraints\EmailValidator
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator }

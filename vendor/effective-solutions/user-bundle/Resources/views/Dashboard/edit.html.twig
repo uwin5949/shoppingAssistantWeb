@@ -1,0 +1,65 @@
+{% extends 'EffectiveSolutionsUserBundle:Dashboard:base.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>User Edit</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            {{ form_start(form1) }}
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    {{ form_label(form1.username) }}
+                                    {{ form_errors(form1.username) }}
+                                    {{ form_widget(form1.username,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form1.email) }}
+                                    {{ form_errors(form1.email) }}
+                                    {{ form_widget(form1.email,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form1.role) }}
+                                    {{ form_errors(form1.role) }}
+                                    {{ form_widget(form1.role,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_errors(form1.isActive) }}
+                                    {{ form_widget(form1.isActive) }}
+                                    {{ form_label(form1.isActive) }}
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                {{ form_widget(form1.save,{'attr':{'class':'btn btn-primary'}}) }}
+                                <a href="{{ url('dashboard_user_mngt_list') }}" class="btn btn-default">Cancel</a>
+                            </div>
+                            {{ form_end(form1) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6"><div class="panel panel-primary">
+                            {{ form_start(form2) }}
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    {{ form_label(form2.password.first) }}
+                                    {{ form_errors(form2.password.first) }}
+                                    {{ form_widget(form2.password.first,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form2.password.second) }}
+                                    {{ form_errors(form2.password.second) }}
+                                    {{ form_widget(form2.password.second,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                {{ form_widget(form2.save,{'attr':{'class':'btn btn-primary'}}) }}
+                                <a href="{{ url('dashboard_user_mngt_list') }}" class="btn btn-default">Cancel</a>
+                            </div>
+                            {{ form_end(form2) }}
+                        </div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

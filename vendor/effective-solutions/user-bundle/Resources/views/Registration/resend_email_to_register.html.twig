@@ -1,0 +1,11 @@
+<body>
+
+<h3>
+    Token has expired.
+    <br>
+    {#<a href="{{ url('register_failure',{emailConfirmKey:user.emailConfirmKey}) }}"> Resend Email</a>#}
+    <a href="{{ url('resend_email', {emailConfirmKey:user.emailConfirmKey}) }}"> Resend Email</a>
+
+</h3>
+
+</body>

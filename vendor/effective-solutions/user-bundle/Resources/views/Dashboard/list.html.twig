@@ -1,0 +1,40 @@
+{% extends 'EffectiveSolutionsUserBundle:Dashboard:base.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>User List</h1>
+                <div class="panel panel-primary">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.role.name }}</td>
+                                <td>
+                                    {% if user.isActive %}
+                                        <label class="label label-success">Active</label>
+                                    {% else %}
+                                        <label class="label label-danger">Inactive</label>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ url('dashboard_user_mngt_view',{id:user.id}) }}" class="btn btn-primary btn-sm">View</a>
+                                    <a href="{{ url('dashboard_user_mngt_edit',{id:user.id}) }}" class="btn btn-success btn-sm">Edit</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

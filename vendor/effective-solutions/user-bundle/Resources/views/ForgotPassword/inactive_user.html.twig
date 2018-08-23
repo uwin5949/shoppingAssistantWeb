@@ -1,0 +1,11 @@
+<body>
+
+<h3>
+    You are an inactive user.
+    <br>
+    {#<a href="{{ url('register_failure',{emailConfirmKey:user.emailConfirmKey}) }}"> Resend Email</a>#}
+    <a href="{{ url('resend_email', {emailConfirmKey:user.emailConfirmKey}) }}"> Send Me Confirmation Email </a>
+
+</h3>
+
+</body>

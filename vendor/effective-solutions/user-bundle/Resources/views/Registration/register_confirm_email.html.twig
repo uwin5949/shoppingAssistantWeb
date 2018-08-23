@@ -1,0 +1,10 @@
+
+{% block body %}
+
+    <h3>Click below to confirm registration</h3>
+
+    <a href="{{ url('register_confirm',{key:user.emailConfirmKey}) }}">Confirm</a>
+
+{% endblock %}
+
+

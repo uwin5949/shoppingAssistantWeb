@@ -1,0 +1,21 @@
+{
+  "name": "effective-solutions/user-bundle",
+  "type": "library",
+  "description": "Effective Solutions (Pvt) Ltd. User Bundle",
+  "keywords": ["User Bundle"],
+  "homepage": "http://effectivesolutions.lk/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Charith Prasanga",
+      "email": "charith@effectivesolutions.lk",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "autoload": {
+    "psr-4": { "EffectiveSolutions\\UserBundle\\": "" }
+  }
+}
