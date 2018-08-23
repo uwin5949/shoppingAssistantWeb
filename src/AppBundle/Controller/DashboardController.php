@@ -323,5 +323,18 @@ class DashboardController extends Controller
         ));
     }
 
+    /**
+     * @Route("/shop/list", name="dashboard_view_shop_list")
+     */
+    public function viewShopListAction(Request $request)
+    {
+        $shops = $this->getDoctrine()->getManager()->getRepository('AppBundle:Shop')->findAll();
+
+        return $this->render('dashboard/shopList.html.twig', array(
+            'offers' => $offers,
+            'heading' => 'Offer List',
+        ));
+    }
+
 
 }

@@ -154,57 +154,78 @@
                 {#<li><a href="{{ url('homepage') }}"><i class="fa fa-image"></i><span>Main Slider Images</span></a></li>#}
                 {#<li><a href="{{ url('homepage') }}"><i class="fa fa-camera-retro"></i><span>Homepage Gallery Images</span></a></li>#}
 
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-bars"></i><span>Shops</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
 
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-bus"></i><span>Items</span>
-                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                    </a>
-                    <ul class="treeview-menu">
+                            <li>
+                                <a href="{{ url('shop_configure') }}"><i class="fa fa-bars"></i>Add new Shop</a>
+                            </li>
 
-                        <li>
-                            <a href="{{ url('item_configure') }}"><i class="fa fa-bars"></i>Add new Item</a>
-                        </li>
+                            <li>
+                                <a href="{{ url('dashboard_view_shop_list') }}"><i class="fa fa-bars"></i>Item Shop</a>
+                            </li>
 
-                        <li>
-                            <a href="{{ url('dashboard_view_item_list') }}"><i class="fa fa-bars"></i>Item List</a>
-                        </li>
+                        </ul>
+                    </li>
+                {% endif %}
 
-                    </ul>
-                </li>
+                {% if is_granted('ROLE_SHOP_ADMIN') %}
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-bars"></i><span>Items</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
 
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-bus"></i><span>Racks</span>
-                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                    </a>
-                    <ul class="treeview-menu">
+                            <li>
+                                <a href="{{ url('item_configure') }}"><i class="fa fa-bars"></i>Add new Item</a>
+                            </li>
 
-                        <li>
-                            <a href="{{ url('rack_configure') }}"><i class="fa fa-bars"></i>Add new rack</a>
-                        </li>
+                            <li>
+                                <a href="{{ url('dashboard_view_item_list') }}"><i class="fa fa-bars"></i>Item List</a>
+                            </li>
 
-                        <li>
-                            <a href="{{ url('dashboard_view_rack_list') }}"><i class="fa fa-bars"></i>Rack List</a>
-                        </li>
+                        </ul>
+                    </li>
 
-                    </ul>
-                </li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-bars"></i><span>Racks</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
 
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-bus"></i><span>Offers</span>
-                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                    </a>
-                    <ul class="treeview-menu">
+                            <li>
+                                <a href="{{ url('rack_configure') }}"><i class="fa fa-bars"></i>Add new rack</a>
+                            </li>
 
-                        <li>
-                            <a href="{{ url('offer_configure') }}"><i class="fa fa-bars"></i>Add new Offer</a>
-                        </li>
+                            <li>
+                                <a href="{{ url('dashboard_view_rack_list') }}"><i class="fa fa-bars"></i>Rack List</a>
+                            </li>
 
-                        <li>
-                            <a href="{{ url('dashboard_view_offer_list') }}"><i class="fa fa-bars"></i>Offer List</a>
-                        </li>
+                        </ul>
+                    </li>
 
-                    </ul>
-                </li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-bars"></i><span>Offers</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
+
+                            <li>
+                                <a href="{{ url('offer_configure') }}"><i class="fa fa-bars"></i>Add new Offer</a>
+                            </li>
+
+                            <li>
+                                <a href="{{ url('dashboard_view_offer_list') }}"><i class="fa fa-bars"></i>Offer List</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                {% endif %}
+
 
 
 

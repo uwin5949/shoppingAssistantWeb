@@ -118,6 +118,37 @@ class ApiController extends Controller
     }
 
 
+    /**
+     * @Route("/api/shopsuggetion", name="api_shopsuggetion")
+     */
+    public function suggestAShopAction(Request $request)
+    {
+        if($request->getMethod() == "POST"){
+            $response = new \stdClass();
+            $uuid = $request->get('uuid');
+
+            $beacon = $this->getDoctrine()->getManager()->getRepository('AppBundle:Beacon')->findOneBy(array('uuid'=>$uuid));
+            if($beacon != null){
+                $stdShop = new \stdClass();
+                $stdShop->name = $beacon->getShop()->getName();
+                $stdShop->id = $beacon->getShop()->getId();
+
+                $response->shop = $stdShop;
+            }
+            else{
+                $response->shop = null;
+            }
+
+
+            return new Response(json_encode($response));
+        }
+        else{
+            return null;
+        }
+
+    }
+
+
 
 
 }
